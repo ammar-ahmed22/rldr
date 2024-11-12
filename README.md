@@ -46,9 +46,9 @@ You can then enter:
 - `q` to quit out of `rldr`
 
 ## Limitations and Known Issues
-- *Platform Compatibility*: `rldr` relies on `bash` on Unix systems and `cmd` on Windows. Ensure these shells are available on your system
-- *Non-blocking I/O*: While `rldr` works well with real-time commands, some programs with heavy buffering may still delay output display. Commands that require user input will also not work due to the input handling from `rldr`
-- *Output Thread Management*: Each input creates new threads to handle input, so frequent restarts may consume system resources over time.
+- **Platform Compatibility**: `rldr` relies on `bash` on Unix systems and `cmd` on Windows. Ensure these shells are available on your system
+- **Non-blocking I/O**: While `rldr` works well with real-time commands, some programs with heavy buffering may still delay output display. Commands that require user input will also not work due to the input handling from `rldr`
+- **Output Thread Management**: Each input creates new threads to handle input, so frequent restarts may consume system resources over time.
 
 ## Contributing
 Contributions, issues, and feature requests are welcome! Feel free to open an issue or pull request to help improve `rldr`.
