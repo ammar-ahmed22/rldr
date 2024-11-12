@@ -44,7 +44,7 @@ impl CommandRunner {
     self.stop()?;
 
     let child = Self::spawn_child(command)?;
-
+    log::info!("Started `{}`", command.join(" "));
     let mut process_lock = self.current_process.lock().unwrap();
     *process_lock = Some(child);
 
