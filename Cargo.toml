@@ -6,7 +6,8 @@ authors = ["Ammar Ahmed <ammar.ahmed2203@gmail.com>"]
 description = "A simple command line utility to run and manage commands with keypress controls."
 license = "MIT"
 repository = "https://github.com/ammar-ahmed22/rldr"
-
+keywords = ["reloader", "CLI", "command"]
+categories = ["command-line-utilities", "development-tools::cli"]
 
 [dependencies]
 anyhow = "1.0.93"
