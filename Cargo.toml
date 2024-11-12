@@ -2,6 +2,11 @@
 name = "rldr"
 version = "0.0.1"
 edition = "2021"
+authors = ["Ammar Ahmed <ammar.ahmed2203@gmail.com>"]
+description = "A simple command line utility to run and manage commands with keypress controls."
+license = "MIT"
+repository = "https://github.com/ammar-ahmed22/rldr"
+
 
 [dependencies]
 anyhow = "1.0.93"

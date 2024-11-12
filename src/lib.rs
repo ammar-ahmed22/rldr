@@ -25,6 +25,8 @@ impl Reloader {
         let listener = input_listener();
 
         let cmd_str = format!("{}", args.command.join(" "));
+        info!("Starting `{}`", cmd_str);
+        runner.start(&args.command)?;
         for input in listener {
             match input {
                 'r' => {
