@@ -14,5 +14,44 @@
   - Press `q` to quit the reloader.
 
 ## Installation
+In order to install `rldr`, you need to have `cargo` installed. If you don't have Rust or `cargo` installed, you can find instructions [here](https://doc.rust-lang.org/cargo/getting-started/installation.html).
 
-To build and run `Reloader`, you'll need to have Rust installed. If you don't have Rust installed, you can get it from [rust-lang.org](https://www.rust-lang.org/).
+### Cargo
+```
+cargo install rldr
+rldr --help
+```
+
+### Source
+```bash
+git clone https://github.com/ammar-ahmed22/rldr.git
+cd rldr
+cargo install --path .
+```
+
+## Usage
+To use `rldr`, you simply pass in the command you want to run. `rldr` will start the command and provide interactive controls.
+```bash
+rldr ping google.com
+```
+
+### Example Session
+Upon running `rldr` it will display:
+```bash
+[rldr] Enter `r` to reload, `c` to close, `q` to quit
+```
+You can then enter:
+- `r` to restart the command, which terminates the current instance and starts it again.
+- `c` to close the command, stopping it's execution (but still listening for input)
+- `q` to quit out of `rldr`
+
+## Limitations and Known Issues
+- *Platform Compatibility*: `rldr` relies on `bash` on Unix systems and `cmd` on Windows. Ensure these shells are available on your system
+- *Non-blocking I/O*: While `rldr` works well with real-time commands, some programs with heavy buffering may still delay output display. Commands that require user input will also not work due to the input handling from `rldr`
+- *Output Thread Management*: Each input creates new threads to handle input, so frequent restarts may consume system resources over time.
+
+## Contributing
+Contributions, issues, and feature requests are welcome! Feel free to open an issue or pull request to help improve `rldr`.
+
+## License
+This project is licensed under the [MIT License](./LICENSE).
