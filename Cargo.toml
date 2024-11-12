@@ -7,7 +7,7 @@ description = "A simple command line utility to run and manage commands with key
 license = "MIT"
 repository = "https://github.com/ammar-ahmed22/rldr"
 keywords = ["reloader", "CLI", "command"]
-categories = ["command-line-utilities", "development-tools::cli"]
+categories = ["command-line-utilities", "development-tools"]
 
 [dependencies]
 anyhow = "1.0.93"
