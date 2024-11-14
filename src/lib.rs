@@ -4,18 +4,18 @@ mod io;
 mod logger;
 
 use anyhow::Result;
+use args::Args;
 use clap::Parser;
 use command::CommandRunner;
 use io::input_listener;
 use log::{info, warn};
-use args::Args;
 use logger::init_logger;
 
 pub struct Reloader;
 
 impl Reloader {
     pub fn new() -> Self {
-        return Self{}
+        return Self {};
     }
 
     pub fn run(&self) -> Result<()> {
@@ -32,17 +32,17 @@ impl Reloader {
                 'r' => {
                     info!("Reloading `{}`", cmd_str);
                     runner.start(&args.command)?;
-                },
+                }
                 'c' => {
                     warn!("Closing `{}`", cmd_str);
                     runner.stop()?;
                     warn!("Closed `{}`", cmd_str);
-                },
+                }
                 'q' => {
                     warn!("Quitting.");
                     runner.stop()?;
                     break;
-                },
+                }
                 _ => {}
             }
         }
