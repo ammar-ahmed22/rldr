@@ -34,6 +34,10 @@ impl Reloader {
                     runner.start(&args.command)?;
                 }
                 'c' => {
+                    if !runner.is_running() {
+                        warn!("`{}` is already closed!", cmd_str);
+                        continue;
+                    }
                     warn!("Closing `{}`", cmd_str);
                     runner.stop()?;
                     warn!("Closed `{}`", cmd_str);

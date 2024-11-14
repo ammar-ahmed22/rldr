@@ -38,6 +38,17 @@ impl CommandRunner {
         }
     }
 
+    pub fn is_running(&self) -> bool {
+        match *self.current_process.lock().unwrap() {
+            Some(_) => {
+                return true;
+            }
+            None => {
+                return false;
+            }
+        }
+    }
+
     pub fn start(&self, command: &[String]) -> Result<()> {
         self.stop()?;
 
