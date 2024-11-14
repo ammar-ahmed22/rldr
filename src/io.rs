@@ -1,3 +1,4 @@
+use colored::Colorize;
 use log::info;
 use std::io::{self, Write};
 use std::sync::mpsc::{self, Receiver};
@@ -6,7 +7,15 @@ use std::thread;
 pub fn input_listener() -> Receiver<char> {
     let (tx, rx) = mpsc::channel();
     thread::spawn(move || loop {
-        info!("Enter `r` to reload, `c` to close, `q` to quit");
+        info!(
+            "Enter {} to {}, {} to {}, {} to {}",
+            "`r`".green(),
+            "reload".green(),
+            "`c`".yellow(),
+            "close".yellow(),
+            "`q`".red(),
+            "quit".red()
+        );
         io::stdout().flush().unwrap();
 
         let mut buffer = String::new();

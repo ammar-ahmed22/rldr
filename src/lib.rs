@@ -6,9 +6,10 @@ mod logger;
 use anyhow::Result;
 use args::Args;
 use clap::Parser;
+use colored::*;
 use command::CommandRunner;
 use io::input_listener;
-use log::{info, warn};
+use log::{error, info, warn};
 use logger::init_logger;
 
 pub struct Reloader;
@@ -24,7 +25,7 @@ impl Reloader {
         let runner = CommandRunner::new();
         let listener = input_listener();
 
-        let cmd_str = format!("{}", args.command.join(" "));
+        let cmd_str = format!("{}", args.command.join(" ")).purple();
         info!("Starting `{}`", cmd_str);
         runner.start(&args.command)?;
         for input in listener {
@@ -43,7 +44,7 @@ impl Reloader {
                     warn!("Closed `{}`", cmd_str);
                 }
                 'q' => {
-                    warn!("Quitting.");
+                    error!("Quitting `{}`", cmd_str);
                     runner.stop()?;
                     break;
                 }

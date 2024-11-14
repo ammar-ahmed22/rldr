@@ -23,8 +23,9 @@ impl log::Log for Logger {
     fn log(&self, record: &Record) {
         if self.enabled(record.metadata()) {
             println!(
-                "{}",
-                Self::colored(record.level(), format!("[rldr] {}", record.args()))
+                "{} {}",
+                Self::colored(record.level(), String::from("[rldr]")),
+                record.args()
             );
         }
     }

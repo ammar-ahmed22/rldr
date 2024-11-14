@@ -1,4 +1,5 @@
 use anyhow::Result;
+use colored::*;
 use libc::{pid_t, SIGKILL};
 use std::os::unix::process::CommandExt;
 use std::process::{Child, Command};
@@ -53,21 +54,22 @@ impl CommandRunner {
         self.stop()?;
 
         let child = Self::spawn_child(command)?;
-        log::info!("Started `{}`", command.join(" "));
+        let cmd_str = format!("{}", command.join(" ")).purple();
+        log::info!("Started `{}`", cmd_str);
         let mut process_lock = self.current_process.lock().unwrap();
         *process_lock = Some(child);
         if let Some(ref mut process) = *process_lock {
             match process.wait() {
                 Ok(status) => {
-                    log::info!(
+                    log::warn!(
                         "`{}` exited with status {:?}",
-                        command.join(" "),
+                        cmd_str,
                         status.code().unwrap_or(-1)
                     );
                     *process_lock = None;
                 }
                 Err(e) => {
-                    log::error!("`{}` failed to exit with error: {}", command.join(" "), e);
+                    log::error!("`{}` failed to exit with error: {}", cmd_str, e);
                     *process_lock = None;
                 }
             }
